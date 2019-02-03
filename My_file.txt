@@ -1,1 +1,2 @@
 How pull works?
+What about fetch
