@@ -72,6 +72,8 @@ if a + b > c and a + c > b and b + c > a:
 else:
     print('NO')
 
+#############################################
+
 #Task 5
 # a = int(input('Enter a: '))
 # b = int(input('Enter b: '))
@@ -81,6 +83,8 @@ else:
 # items.sort()
 # a, b, c = items[0], items[1], items[2]
 # print("{}, {}, {}".format(a, b, c))
+
+#############################################
 
 #Task 6
 a = 3
@@ -94,6 +98,8 @@ elif items.count(a) == 2 or items.count(b) == 2:
     print(2)
 else:
     print(0)
+
+#############################################
 
 #Task 7
 human = {"Name": "Alex", "Surname": "Miller", "Age": 45, "Phone": {"Mobile": "093-689-23-74", "Work": "044-233-11-45"},
