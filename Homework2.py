@@ -75,14 +75,14 @@ else:
 #############################################
 
 #Task 5
-# a = int(input('Enter a: '))
-# b = int(input('Enter b: '))
-# c = int(input('Enter c: '))
-#
-# items = [a, b, c]
-# items.sort()
-# a, b, c = items[0], items[1], items[2]
-# print("{}, {}, {}".format(a, b, c))
+a = int(input('Enter a: '))
+b = int(input('Enter b: '))
+c = int(input('Enter c: '))
+
+items = [a, b, c]
+items.sort()
+a, b, c = items[0], items[1], items[2]
+print("{}, {}, {}".format(a, b, c))
 
 #############################################
 
