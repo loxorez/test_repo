@@ -233,3 +233,5 @@ for i in sorted_words:
         words_counter[i] = 1
     else:
         words_counter[i] += 1
+
+          
