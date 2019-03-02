@@ -1,6 +1,7 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
+      <mapping pattern="distance" type="Python" />
       <mapping pattern="rdemo" type="Python" />
     </extensionMap>
   </component>
