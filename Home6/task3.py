@@ -45,5 +45,5 @@ def print_in_file(source_file, destination_file, top_counters=False):
 
 
 if __name__ == "__main__":
-    print_in_file(directory + 'A_Long_Goodbye-Raymond_Chandler.txt', directory + 'With_counters.txt')
+    print_in_file(directory + 'A_Long_Goodbye-Raymond_Chandler.txt', directory + 'With_Word_counters.txt')
 
