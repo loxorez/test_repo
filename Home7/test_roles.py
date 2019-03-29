@@ -11,7 +11,7 @@ def random_string(string_len):
     :param string_len: string is expected to be generated in range
     :return: string with random cases characters
     """
-    ascii_let_dig = list(i for i in (string.ascii_letters + string.digits))
+    ascii_let_dig = string.ascii_letters + string.digits
     string_result = "".join(random.choices(ascii_let_dig, k=random.randint(1, string_len)))
     return string_result
 
