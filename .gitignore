@@ -8,6 +8,7 @@
 *.bs
 *.pyc
 __pycache__/
+assets/
 
 # Devel::Cover
 cover_db/
