@@ -2,12 +2,14 @@ import requests
 import pytest
 import json
 import os
+import random
 from Home7.test_roles import random_string
 
 
 @pytest.fixture(scope='module')
 def base_url():
     return 'http://pulse-rest-testing.herokuapp.com'
+
 
 # Book create
 @pytest.fixture()
@@ -21,6 +23,16 @@ def book_create(base_url):
         requests.delete(base_url + f"/books/{book_body['id']}")
 
 
+# One simple role create
+@pytest.fixture()
+def one_role_create(base_url, book_create):
+    role_data = {"name": "zw4bmURxuIp8KsvDPtARWSyO3B20waPD3Cp1opNB5OGnDMBUzjvtHjMVSyQXw5L680NiFNo8JMvO3",
+                 "type": "OpTqflMrpj9UmxYHNkUxREjuFT0jEipSh2psVc4UkuQzl9yaYihbPN9y3v6t5nKBRvRUrybxnbKyCxNSfLDW843UmCU6xnvqekel3lbCLhzHE5kIogcU9NOQgFPld9EIVy9NBchYN2i0tdevCTuA35YwfQRlYH1tjx7W3jcGhvWz4zgOunrD0SsqXLn",
+                 "level": -31166241,
+                 "book": base_url + f"/books/{book_create['id']}"}
+    return role_data
+
+
 # Read roles data params from JSON file
 with open(os.getcwd() + '/json_data/roles_data_list.json', 'r') as file:
     json_data = file.read()
@@ -32,4 +44,15 @@ with open(os.getcwd() + '/json_data/roles_data_list.json', 'r') as file:
 def roles_create(request, base_url, book_create):
     request.param["book"] = base_url + f"/books/{book_create['id']}"
     yield request.param
+    if 'id' in request.param:
+        requests.delete(base_url + f"/roles/{request.param['id']}")
 
+# Create list with roles, using same book for all roles
+@pytest.fixture()
+def roles_list_create(base_url, book_create):
+    roles_list_create = [{"name": random_string(200),
+                          "type": random_string(255),
+                          "level": random.randint(-2147483648, 2147483647),
+                          "book": base_url + f"/books/{book_create['id']}"
+                          } for _ in range(10)]
+    return roles_list_create

@@ -18,6 +18,7 @@ def test_role_read(base_url, roles_create):
     role = requests.post(base_url + f"/roles", data=roles_create)
     assert role.status_code == 201
     role_body = role.json()
+    roles_create['id'] = role_body['id']
     role_read = requests.get(base_url + f"/roles/{role_body['id']}")
     assert role_body == role_read.json()
 
