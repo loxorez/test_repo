@@ -30,7 +30,9 @@ def one_role_create(base_url, book_create):
                  "type": "OpTqflMrpj9UmxYHNkUxREjuFT0jEipSh2psVc4UkuQzl9yaYihbPN9y3v6t5nKBRvRUrybxnbKyCxNSfLDW843UmCU6xnvqekel3lbCLhzHE5kIogcU9NOQgFPld9EIVy9NBchYN2i0tdevCTuA35YwfQRlYH1tjx7W3jcGhvWz4zgOunrD0SsqXLn",
                  "level": -31166241,
                  "book": base_url + f"/books/{book_create['id']}"}
-    return role_data
+    yield role_data
+    if 'id' in role_data:
+        requests.delete(base_url + f"/roles/{role_data['id']}")
 
 
 # Read roles data params from JSON file
@@ -47,6 +49,7 @@ def roles_create(request, base_url, book_create):
     if 'id' in request.param:
         requests.delete(base_url + f"/roles/{request.param['id']}")
 
+
 # Create list with roles, using same book for all roles
 @pytest.fixture()
 def roles_list_create(base_url, book_create):
@@ -55,4 +58,14 @@ def roles_list_create(base_url, book_create):
                           "level": random.randint(-2147483648, 2147483647),
                           "book": base_url + f"/books/{book_create['id']}"
                           } for _ in range(10)]
-    return roles_list_create
+    yield roles_list_create
+    for i in roles_list_create:
+        if 'id' in i:
+            requests.delete(base_url + f"/roles/{i['id']}")
+
+
+# Clear all existing roles
+@pytest.fixture()
+def clear_all_roles(base_url):
+    for role in requests.get(base_url + "/roles").json():
+        requests.delete(base_url + f"/roles/{role['id']}")
